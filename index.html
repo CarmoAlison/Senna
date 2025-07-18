@@ -23,7 +23,7 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#hero">Início</a></li>
+                <li><a href="teste.html">Início</a></li>
                 <li><a href="#destaques">Destaques</a></li>
                 <li><a href="#galeria">Galeria</a></li>
                 <li><a href="#sobre">Sobre</a></li>
@@ -442,114 +442,89 @@
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script src="/js/script.js"></script>
 <script>
-    // Configurações iniciais
-    let scrollSpeed = 1.5;
-    let smoothness = 0.5;
-    let targetScrollY = window.scrollY;
+    // Configurações melhoradas para scroll suave
+    let scrollSpeed = 1.5; // Valor padrão mais razoável
     let animationId = null;
+    let targetScrollY = window.scrollY;
+    let lastTimestamp = 0;
+    const animationDuration = 800; // Duração da animação em ms
 
-    // Elementos do painel de controle
-    const speedSlider = document.getElementById('speed');
-    const smoothnessSlider = document.getElementById('smoothness');
-    const speedValue = speedSlider.nextElementSibling;
-    const smoothnessValue = smoothnessSlider.nextElementSibling;
-    const resetBtn = document.getElementById('resetBtn');
-
-    // Atualiza exibição dos valores
-    function updateDisplay() {
-        speedValue.textContent = scrollSpeed.toFixed(1) + 'x';
-        smoothnessValue.textContent = smoothness.toFixed(2);
+    // Função de animação suave usando easing
+    function smoothScroll(timestamp) {
+        if (!lastTimestamp) lastTimestamp = timestamp;
+        
+        const elapsed = timestamp - lastTimestamp;
+        const progress = Math.min(elapsed / animationDuration, 1);
+        
+        // Função de easing (cúbica) para transição suave
+        const easeValue = progress < 0.5 
+            ? 4 * progress * progress * progress 
+            : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+        
+        const currentScrollY = window.scrollY;
+        const diff = targetScrollY - currentScrollY;
+        const scrollStep = diff * easeValue;
+        
+        window.scrollTo(0, currentScrollY + scrollStep);
+        
+        if (progress < 1) {
+            animationId = requestAnimationFrame(smoothScroll);
+        } else {
+            animationId = null;
+            lastTimestamp = 0;
+        }
     }
 
-    // Configura eventos dos sliders
-    speedSlider.addEventListener('input', () => {
-        scrollSpeed = parseFloat(speedSlider.value);
-        updateDisplay();
-    });
-
-    smoothnessSlider.addEventListener('input', () => {
-        smoothness = parseFloat(smoothnessSlider.value);
-        updateDisplay();
-    });
-
-    // Botão reset
-    resetBtn.addEventListener('click', () => {
-        scrollSpeed = 1.5;
-        smoothness = 0.5;
-        speedSlider.value = scrollSpeed;
-        smoothnessSlider.value = smoothness;
-        updateDisplay();
-    });
-
-    // Função de animação suave
-    function smoothScroll() {
-        const currentScrollY = window.scrollY;
-
-        // Verifica se chegamos perto o suficiente do alvo
-        if (Math.abs(currentScrollY - targetScrollY) < 0.5) {
-            window.scrollTo(0, targetScrollY);
-            return;
+    // Função para iniciar o scroll animado
+    function startSmoothScroll() {
+        if (animationId) {
+            cancelAnimationFrame(animationId);
         }
-
-        // Calcula o passo com base na suavidade
-        const diff = targetScrollY - currentScrollY;
-        const step = diff * smoothness;
-
-        window.scrollTo(0, currentScrollY + step);
+        lastTimestamp = 0;
         animationId = requestAnimationFrame(smoothScroll);
     }
 
     // Evento de roda do mouse
     window.addEventListener('wheel', event => {
         event.preventDefault();
-
+        
         // Atualiza o alvo com o delta acelerado
         targetScrollY += event.deltaY * scrollSpeed;
-
+        
         // Mantém o alvo dentro dos limites
         targetScrollY = Math.max(0, Math.min(
-            targetScrollY,
+            targetScrollY, 
             document.body.scrollHeight - window.innerHeight
         ));
-
-        // Cancela a animação anterior se houver
-        if (animationId) {
-            cancelAnimationFrame(animationId);
-        }
-
-        // Inicia a animação
-        animationId = requestAnimationFrame(smoothScroll);
+        
+        startSmoothScroll();
     }, { passive: false });
 
     // Evento de teclado (PageUp, PageDown, Seta para cima, Seta para baixo)
     window.addEventListener('keydown', event => {
         const keyCodes = [33, 34, 38, 40]; // PgUp, PgDown, ↑, ↓
-
+        
         if (keyCodes.includes(event.keyCode)) {
             event.preventDefault();
             const scrollAmount = window.innerHeight * 0.8 * scrollSpeed;
-
+            
             if (event.keyCode === 33 || event.keyCode === 38) { // PgUp ou ↑
                 targetScrollY -= scrollAmount;
             } else { // PgDown ou ↓
                 targetScrollY += scrollAmount;
             }
-
+            
             // Limita o alvo aos limites da página
             targetScrollY = Math.max(0, Math.min(
-                targetScrollY,
+                targetScrollY, 
                 document.body.scrollHeight - window.innerHeight
             ));
-
-            if (animationId) {
-                cancelAnimationFrame(animationId);
-            }
-            animationId = requestAnimationFrame(smoothScroll);
+            
+            startSmoothScroll();
         }
     });
 
-    // Inicializa a exibição
-    updateDisplay();
+    // Atualizar o valor inicial do scrollSpeed se necessário
+    // scrollSpeed = 1.5; // Mantenha este valor padrão
 </script>
-
 </html>
