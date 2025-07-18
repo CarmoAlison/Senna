@@ -162,7 +162,7 @@
 
     <!-- Sobre Section -->
     <section id="sobre">
-        <h2 class="section-title" >Sobre</h2>
+        <h2 class="section-title">Sobre</h2>
         <div class="liquid-glass">
             <div class="about-image">
                 <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
@@ -304,23 +304,24 @@
         </div>
     </section>
 
-  <footer class="cyber-footer">
+    <footer class="cyber-footer">
         <div class="footer-bg-effect">
             <div class="grid-pattern"></div>
             <div class="pulse-dots"></div>
         </div>
-        
+
         <div class="footer-content">
             <div class="footer-grid">
                 <div class="footer-column">
                     <h3>SENNA CREATIVE</h3>
-                    <p class="footer-text">Transformando ideias em experiências digitais impressionantes com design inovador e tecnologia de ponta.</p>
-                    
+                    <p class="footer-text">Transformando ideias em experiências digitais impressionantes com design
+                        inovador e tecnologia de ponta.</p>
+
                     <div class="newsletter-form">
                         <input type="email" placeholder="Seu e-mail para novidades">
                         <button type="submit">Inscrever</button>
                     </div>
-                    
+
                     <div class="social-links">
                         <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
                         <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
@@ -329,7 +330,7 @@
                         <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
-                
+
                 <div class="footer-column">
                     <h3>Links Rápidos</h3>
                     <ul class="footer-links">
@@ -340,7 +341,7 @@
                         <li><a href="#">Contato</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-column">
                     <h3>Serviços</h3>
                     <ul class="footer-links">
@@ -352,7 +353,7 @@
                         <li><a href="#">Fotógrafo</a></li>
                     </ul>
                 </div>
-                
+
                 <!-- <div class="footer-column">
                     <h3>Contato</h3>
                     <div class="contact-info">
@@ -389,47 +390,47 @@
                 </div> -->
 
                 <div class="footer-column">
-                     <div class="container2">
-                <div class="logoExcelencia">
-                    <img src="assets/image/LOGO BRANCA.png" alt="">
-                    <hr>
-                    <div class="text-logo-ex">
-                        <h1>Excelência<span>Web</span>
-                        </h1>
-                        <p>Agência de sites</p>
+                    <div class="container2">
+                        <div class="logoExcelencia">
+                            <img src="assets/image/LOGO BRANCA.png" alt="">
+                            <hr>
+                            <div class="text-logo-ex">
+                                <h1>Excelência<span>Web</span>
+                                </h1>
+                                <p>Agência de sites</p>
+                            </div>
+                        </div>
+                        <div class="informa-excelencia">
+                            <h4>Contato</h4>
+                            <hr>
+                            <p><i class="fas fa-phone"></i> (84) 8499600-2433</p>
+                            <p><i class="fas fa-envelope"></i> contato@excelenciaweb.com.br</p>
+                        </div>
+                        <div class="redes-sociais-excelencia">
+                            <a href="https://wa.me/5584996002433"><i class="fab fa-whatsapp"></i></a>
+                            <a href="tel:84996002433"><i class="fas fa-phone-alt"></i></a>
+                            <a href="https://instagram.com/excelencia_web"> <i class="fab fa-instagram"></i></a>
+                        </div>
                     </div>
                 </div>
-                <div class="informa-excelencia">
-                    <h4>Contato</h4>
-                    <hr>
-                    <p><i class="fas fa-phone"></i> (84) 8499600-2433</p>
-                    <p><i class="fas fa-envelope"></i> contato@excelenciaweb.com.br</p>
-                </div>
-                <div class="redes-sociais-excelencia">
-                    <a href="https://wa.me/5584996002433"><i class="fab fa-whatsapp"></i></a>
-                    <a href="tel:84996002433"><i class="fas fa-phone-alt"></i></a>
-                    <a href="https://instagram.com/excelencia_web"> <i class="fab fa-instagram"></i></a>
-                </div>
             </div>
-                </div>
-            </div>
-            
+
             <div class="footer-bottom">
                 <div class="footer-logo">
-                   <img src="assets/image/logo-senna-designer.png" alt="">
+                    <img src="assets/image/logo-senna-designer.png" alt="">
                 </div>
                 <div class="copyright">
                     &copy; 2025 SENNA. Todos os direitos reservados | Criado pela Excelência Web
                 </div>
-                
-                
+
+
                 <a href="" class="back-to-top">
                     <i class="fas fa-arrow-up"></i>
                     Voltar ao topo
                 </a>
             </div>
         </div>
-        
+
         <!-- <div class="footer-waves">
             <div class="wave wave1"></div>
             <div class="wave wave2"></div>
@@ -440,5 +441,115 @@
 </body>
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script src="/js/script.js"></script>
+<script>
+    // Configurações iniciais
+    let scrollSpeed = 1.5;
+    let smoothness = 0.5;
+    let targetScrollY = window.scrollY;
+    let animationId = null;
+
+    // Elementos do painel de controle
+    const speedSlider = document.getElementById('speed');
+    const smoothnessSlider = document.getElementById('smoothness');
+    const speedValue = speedSlider.nextElementSibling;
+    const smoothnessValue = smoothnessSlider.nextElementSibling;
+    const resetBtn = document.getElementById('resetBtn');
+
+    // Atualiza exibição dos valores
+    function updateDisplay() {
+        speedValue.textContent = scrollSpeed.toFixed(1) + 'x';
+        smoothnessValue.textContent = smoothness.toFixed(2);
+    }
+
+    // Configura eventos dos sliders
+    speedSlider.addEventListener('input', () => {
+        scrollSpeed = parseFloat(speedSlider.value);
+        updateDisplay();
+    });
+
+    smoothnessSlider.addEventListener('input', () => {
+        smoothness = parseFloat(smoothnessSlider.value);
+        updateDisplay();
+    });
+
+    // Botão reset
+    resetBtn.addEventListener('click', () => {
+        scrollSpeed = 1.5;
+        smoothness = 0.5;
+        speedSlider.value = scrollSpeed;
+        smoothnessSlider.value = smoothness;
+        updateDisplay();
+    });
+
+    // Função de animação suave
+    function smoothScroll() {
+        const currentScrollY = window.scrollY;
+
+        // Verifica se chegamos perto o suficiente do alvo
+        if (Math.abs(currentScrollY - targetScrollY) < 0.5) {
+            window.scrollTo(0, targetScrollY);
+            return;
+        }
+
+        // Calcula o passo com base na suavidade
+        const diff = targetScrollY - currentScrollY;
+        const step = diff * smoothness;
+
+        window.scrollTo(0, currentScrollY + step);
+        animationId = requestAnimationFrame(smoothScroll);
+    }
+
+    // Evento de roda do mouse
+    window.addEventListener('wheel', event => {
+        event.preventDefault();
+
+        // Atualiza o alvo com o delta acelerado
+        targetScrollY += event.deltaY * scrollSpeed;
+
+        // Mantém o alvo dentro dos limites
+        targetScrollY = Math.max(0, Math.min(
+            targetScrollY,
+            document.body.scrollHeight - window.innerHeight
+        ));
+
+        // Cancela a animação anterior se houver
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+        }
+
+        // Inicia a animação
+        animationId = requestAnimationFrame(smoothScroll);
+    }, { passive: false });
+
+    // Evento de teclado (PageUp, PageDown, Seta para cima, Seta para baixo)
+    window.addEventListener('keydown', event => {
+        const keyCodes = [33, 34, 38, 40]; // PgUp, PgDown, ↑, ↓
+
+        if (keyCodes.includes(event.keyCode)) {
+            event.preventDefault();
+            const scrollAmount = window.innerHeight * 0.8 * scrollSpeed;
+
+            if (event.keyCode === 33 || event.keyCode === 38) { // PgUp ou ↑
+                targetScrollY -= scrollAmount;
+            } else { // PgDown ou ↓
+                targetScrollY += scrollAmount;
+            }
+
+            // Limita o alvo aos limites da página
+            targetScrollY = Math.max(0, Math.min(
+                targetScrollY,
+                document.body.scrollHeight - window.innerHeight
+            ));
+
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+            animationId = requestAnimationFrame(smoothScroll);
+        }
+    });
+
+    // Inicializa a exibição
+    updateDisplay();
+</script>
 
 </html>
