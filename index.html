@@ -447,14 +447,14 @@
     let animationId = null;
     let targetScrollY = window.scrollY;
     let lastTimestamp = 0;
-    const animationDuration = 800; // Duração da animação em ms
+    const animationDuration = 500; // Duração da animação em ms
 
     // Função de animação suave usando easing
     function smoothScroll(timestamp) {
         if (!lastTimestamp) lastTimestamp = timestamp;
         
         const elapsed = timestamp - lastTimestamp;
-        const progress = Math.min(elapsed / animationDuration, 1);
+        const progress = Math.min(elapsed / animationDuration, 0.5);
         
         // Função de easing (cúbica) para transição suave
         const easeValue = progress < 0.5 

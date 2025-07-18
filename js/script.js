@@ -1,10 +1,10 @@
 // Efeito de partículas
 particlesJS('particles-js', {
     particles: {
-        number: { value: 80, density: { enable: true, value_area: 800 } },
+        number: { value: 20, density: { enable: true, value_area: 300 } },
         color: { value: "#670FC5" },
         shape: { type: "circle" },
-        opacity: { value: 0.5, random: true },
+        opacity: { value: 0.9, random: true },
         size: { value: 3, random: true },
         line_linked: {
             enable: true,
@@ -15,7 +15,7 @@ particlesJS('particles-js', {
         },
         move: {
             enable: true,
-            speed: 2,
+            speed: 7,
             direction: "none",
             random: true,
             straight: false,
@@ -31,7 +31,7 @@ particlesJS('particles-js', {
             resize: true
         },
         modes: {
-            repulse: { distance: 100, duration: 0.4 },
+            repulse: { distance: 50, duration: 0.4 },
             push: { particles_nb: 4 }
         }
     },
