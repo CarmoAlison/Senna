@@ -1351,7 +1351,6 @@ nav ul li a:hover::before {
 
     .hero-content{
         margin: auto;
-        margin-top: 50px;
         margin-left: 10px;
     }
     .hero-content p{
@@ -1363,6 +1362,7 @@ nav ul li a:hover::before {
     #hero{
         padding: 0;
         width: 100%;
+        margin-top: 10px;
     }
 
     #destaques{
@@ -1375,7 +1375,7 @@ nav ul li a:hover::before {
         padding: 0;
     }
     .holo-card{
-        width: 100%;
+        width: 90%;
     }
     #galeria{
         padding: 10px;
@@ -1438,6 +1438,11 @@ nav ul li a:hover::before {
     .contact-form{
         padding: 10px;
     }
+
+    .newsletter-form{
+        width: 100%;
+        max-width: 300px;
+    }
 }
 
 /* Responsividade */
@@ -1454,13 +1459,14 @@ nav ul li a:hover::before {
 @media (max-width: 992px) {
     #hero {
         flex-direction: column-reverse;
-        padding-top: 150px;
+        padding-top: 80px;
         text-align: center;
+        gap: 70px;
     }
 
     .hero-content {
         margin-bottom: 80px;
-        margin-top: 80px;
+        margin-top: 50px;
     }
 
     .hologram-container {
@@ -1489,6 +1495,7 @@ nav ul li a:hover::before {
     .hologram-container {
         width: 70%;
         height: 300px;
+        margin-top: 150px;
     }
     .hologram-container h3{
         font-size: 20px;
