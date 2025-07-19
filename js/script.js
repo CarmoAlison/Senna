@@ -174,3 +174,93 @@ newsletterForm.addEventListener('submit', (e) => {
         emailInput.placeholder = 'Seu e-mail para novidades';
     }, 3000);
 });
+// Variáveis globais
+const videoModal = document.querySelector('.video-modal');
+const modalVideo = document.getElementById('modal-video');
+const modalTitle = document.getElementById('modal-title');
+const modalDescription = document.getElementById('modal-description');
+const modalTags = document.getElementById('modal-tags');
+const closeModal = document.querySelector('.close-modal');
+const videoCards = document.querySelectorAll('.video-card');
+
+// Função para abrir o modal com o vídeo selecionado
+function openVideoModal(videoPath, title, description, tags) {
+    // Definir o vídeo
+    modalVideo.innerHTML = `<source src="${videoPath}" type="video/mp4">`;
+
+    // Carregar o vídeo novamente para garantir que o source seja reconhecido
+    modalVideo.load();
+
+    // Definir os detalhes
+    modalTitle.textContent = title;
+    modalDescription.textContent = description;
+
+    // Limpar e adicionar as tags
+    modalTags.innerHTML = '';
+    const tagsArray = tags.split(',');
+    tagsArray.forEach(tag => {
+        const tagElement = document.createElement('span');
+        tagElement.className = 'modal-tag';
+        tagElement.textContent = tag;
+        modalTags.appendChild(tagElement);
+    });
+
+    // Mostrar o modal
+    videoModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Fechar o modal
+function closeVideoModal() {
+    // Pausar o vídeo
+    modalVideo.pause();
+
+    // Fechar o modal
+    videoModal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Event Listeners
+videoCards.forEach(card => {
+    card.addEventListener('click', () => {
+        const videoPath = card.getAttribute('data-video');
+        const title = card.getAttribute('data-title');
+        const description = card.getAttribute('data-description');
+        const tags = card.getAttribute('data-tags');
+
+        openVideoModal(videoPath, title, description, tags);
+    });
+});
+
+closeModal.addEventListener('click', closeVideoModal);
+
+// Fechar modal ao clicar fora do conteúdo
+videoModal.addEventListener('click', (e) => {
+    if (e.target === videoModal) {
+        closeVideoModal();
+    }
+});
+
+// Fechar modal com a tecla ESC
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+        closeVideoModal();
+    }
+});
+
+// Efeito de hover nos cards
+videoCards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-20px) rotateX(5deg) rotateY(5deg)';
+    });
+
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+    });
+});
+
+// Animação das formas flutuantes
+const shapes = document.querySelectorAll('.shape');
+shapes.forEach((shape, index) => {
+    shape.style.animationDelay = `${index * 2}s`;
+});
